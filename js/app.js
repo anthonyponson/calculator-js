@@ -63,6 +63,10 @@ class Calculator {
     this.previousOperand = ''
   }
 
+  keyBoardEvent(){
+
+  }
+
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand
 
@@ -79,6 +83,7 @@ const operatorButton = document.querySelectorAll('[data-operation]')
 const equalButton = document.querySelector('[data-equal]')
 const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
+// const keyBoardEvent = document.querySelectorAll('button')
 const previousOperandTextElement = document.querySelector(
   '[data-previous-operand]'
 )
@@ -118,4 +123,39 @@ allClearButton.addEventListener('click', (equal) => {
 deleteButton.addEventListener('click', (button) => {
   calculator.deleteNumber()
   calculator.updateDisplay()
+})
+ 
+window.addEventListener('keydown', (event) => {
+  // Check which key was pressed
+  const key = event.key
+
+  // Check if the key pressed was a number
+  if (!isNaN(key)) {
+    calculator.appendNumber(key)
+    calculator.updateDisplay()
+  }
+
+  // Check if the key pressed was an operator
+  if (key === '+' || key === '-' || key === '*' || key === '/') {
+    calculator.chooseOperation(key)
+    calculator.updateDisplay()
+  }
+
+  // Check if the key pressed was the equal sign
+  if (key === '=') {
+    calculator.compute()
+    calculator.updateDisplay()
+  }
+
+  // Check if the key pressed was the all clear key
+  if (key === 'c') {
+    calculator.allClear()
+    calculator.updateDisplay()
+  }
+
+  // Check if the key pressed was the delete key
+  if (key === 'Delete') {
+    calculator.deleteNumber()
+    calculator.updateDisplay()
+  }
 })
