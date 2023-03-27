@@ -13,9 +13,14 @@ class Calculator {
 
   deleteNumber() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1)
+    console.log(this)
   }
 
   appendNumber(number) {
+    if (this.computationPerformed) {
+      this.currentOperand = ''
+      this.computationPerformed = false
+    }
     if (number === '.' && this.currentOperand.includes('.')) return
     this.currentOperand = this.currentOperand.toString() + number.toString()
   }
@@ -61,12 +66,8 @@ class Calculator {
     this.currentOperand = computation
     this.operation = undefined
     this.previousOperand = ''
+    this.computationPerformed = true
   }
-
-  keyBoardEvent(){
-
-  }
-
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand
 
@@ -124,8 +125,8 @@ deleteButton.addEventListener('click', (button) => {
   calculator.deleteNumber()
   calculator.updateDisplay()
 })
- 
-window.addEventListener('keydown', (event) => {
+
+document.addEventListener('keypress', (event) => {
   // Check which key was pressed
   const key = event.key
 
@@ -142,7 +143,7 @@ window.addEventListener('keydown', (event) => {
   }
 
   // Check if the key pressed was the equal sign
-  if (key === '=') {
+  if (key === 'Enter') {
     calculator.compute()
     calculator.updateDisplay()
   }
@@ -159,3 +160,5 @@ window.addEventListener('keydown', (event) => {
     calculator.updateDisplay()
   }
 })
+
+

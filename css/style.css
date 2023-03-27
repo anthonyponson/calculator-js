@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500&family=Rubik:wght@400;500;600;700;800&display=swap');
 
 *,
@@ -64,4 +63,53 @@ body {
   font-size: 2.5rem;
   text-align: right;
   font-weight: 800;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .calculator-wrap {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: minmax(80px, auto) repeat(5, 80px);
+  }
+
+  .calculator-wrap > button {
+    font-size: 1.2rem;
+  }
+
+  .output {
+    padding: 5px;
+  }
+
+  .calculator-wrap .previous-operand {
+    font-size: 1rem;
+  }
+
+  .calculator-wrap .current-operand {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .calculator-wrap {
+    grid-template-columns: repeat(2, 60px);
+    grid-template-rows: minmax(60px, auto) repeat(5, 60px);
+  }
+
+  .calculator-wrap > button {
+    font-size: 1rem;
+  }
+
+  .output {
+    padding: 5px;
+  }
+
+  .calculator-wrap .previous-operand {
+    font-size: 0.8rem;
+  }
+
+  .calculator-wrap .current-operand {
+    font-size: 1.5rem;
+  }
 }
